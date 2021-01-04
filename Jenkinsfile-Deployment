@@ -4,8 +4,7 @@ pipeline {
         stage('Publish over ssh') {
             steps {
               sshPublisher(publishers: [sshPublisherDesc(configName: 'master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f  adressbook-deployment.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/sunil', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            }   
         }
-        
-        
     }
 }
