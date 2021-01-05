@@ -26,13 +26,12 @@ pipeline {
                 sh 'mvn package'
                 
             }
+            post {
+              success {
+                sh "echo 'Send mail on success'"
+                mail bcc: '', body: 'Hi build successful', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
+              }
+            }   
         }
-     }
-    
-        post {
-          success {
-           sh "echo 'Send mail on success'"
-           mail bcc: '', body: 'Hi build successful', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
-          }
-        }   
+     }      
 }
