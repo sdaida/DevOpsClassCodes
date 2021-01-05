@@ -10,11 +10,18 @@ pipeline {
             steps {
                 sh 'mvn clean install'
             }
+            
         }
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
+            post {
+              success {
+                sh "echo 'Send mail on success'"
+                mail bcc: '', body: 'Hi maven test is  successful', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
+              }
+            }   
         }
         stage('compile') {
             steps {
@@ -29,7 +36,7 @@ pipeline {
             post {
               success {
                 sh "echo 'Send mail on success'"
-                mail bcc: '', body: 'Hi build successful', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
+                mail bcc: '', body: 'Hi package successful', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
               }
             }   
         }
