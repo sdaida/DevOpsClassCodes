@@ -28,4 +28,10 @@ pipeline {
             }
         }
     }
+        post {
+          success {
+           sh "echo 'Send mail on success'"
+           mail bcc: '', body: 'Hi please check pipeline build status', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
+          }
+        }
 }
