@@ -40,5 +40,16 @@ pipeline {
               }
             }   
         }
+        stage("Build image") {
+            steps {
+             sh 'docker build -t addressbook:latest .'
+            }
+            post {
+              failure {
+                sh "echo 'Send mail on failure'"
+                mail bcc: '', body: 'Hi building image failed', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'daidasunny@gmail.com'    
+              }
+            }   
+        }
      }      
 }
