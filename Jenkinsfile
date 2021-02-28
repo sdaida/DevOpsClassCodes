@@ -46,6 +46,16 @@ pipeline {
             sh 'docker push daidasunny/addressbook:1.0'
             }
         }
+        stage("Deploy in K8s") {
+            steps {
+             sh 'kubectl apply -f adressbook-deployment.yaml'
+            }
+        }   
+        stage("service in K8s") {
+            steps {
+             sh 'kubectl apply -f addressbook-service.yaml'
+            }
+        }    
     }
 }
 }
